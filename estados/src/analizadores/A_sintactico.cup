@@ -1,0 +1,24 @@
+package analizadores;
+
+
+import java_cup.runtime.Symbol;
+
+//@author moi
+
+terminal id;
+terminal coma;
+terminal cadena;
+
+non terminal INICIO,E;
+
+start with INICIO;
+
+INICIO::= cadena E {:System.out.println("Fin de analisis de entrada");:}
+;
+
+E::= E coma id
+| id
+;
+
+
+

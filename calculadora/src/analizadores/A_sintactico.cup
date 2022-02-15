@@ -1,0 +1,44 @@
+package analizadores;
+import java_cup.runtime.Symbol;
+
+//@author moi
+
+terminal String tnum;
+terminal tsuma, trest;
+
+non terminal String INICIO,E;
+
+precedence left tsuma, trest;
+
+start with INICIO;
+
+INICIO::= E  {:System.out.println("Fin de calculdora");:}
+;
+
+// GRAMATICA
+// E-> E "+" E
+//  | E "-" E
+//  | num 
+
+E::= E:a tsuma E:b  {:
+                        int val1= Integer.parseInt(a);
+                        int val2= Integer.parseInt(b);
+                        System.out.println(val1+val2);
+                   
+                    :}
+    | E:a trest E:b {:
+                        int val1= Integer.parseInt(a);
+                        int val2= Integer.parseInt(b);
+                        System.out.println(val1-val2);
+                    :}
+    | tnum:a        {:  RESULT=a;  :}
+;
+
+
+
+
+
+
+
+
+
