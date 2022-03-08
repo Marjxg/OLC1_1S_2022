@@ -72,12 +72,12 @@
   }
 */
 var gramatica = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o};
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[5,6,7];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"ini":3,"E":4,"EOF":5,"numero":6,"mas":7,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",6:"numero",7:"mas"},
-productions_: [0,[3,2],[4,3]],
+symbols_: {"error":2,"ini":3,"E":4,"EOF":5,"-":6,"+":7,"numero":8,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"-",7:"+",8:"numero"},
+productions_: [0,[3,2],[4,3],[4,3],[4,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -88,8 +88,8 @@ case 1:
 break;
 }
 },
-table: [{3:1,4:2,6:[1,3]},{1:[3]},{5:[1,4]},{7:[1,5]},{1:[2,1]},{6:[1,6]},{5:[2,2]}],
-defaultActions: {4:[2,1],6:[2,2]},
+table: [{3:1,4:2,8:$V0},{1:[3]},{5:[1,4],6:[1,5],7:[1,6]},o($V1,[2,4]),{1:[2,1]},{4:7,8:$V0},{4:8,8:$V0},o($V1,[2,2]),o($V1,[2,3])],
+defaultActions: {4:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -568,7 +568,7 @@ performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:
-                        return 6
+                        return 8
                     
 break;
 case 1:
@@ -578,7 +578,7 @@ case 1:
 break;
 case 2:
                         console.log("reconoci token <simbolo> con lexema: "+yy_.yytext);
-                        return '-';
+                        return 6;
                     
 break;
 case 3:

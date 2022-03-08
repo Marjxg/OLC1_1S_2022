@@ -17,7 +17,7 @@ numero  [0-9]+
 
 "+"                 {
                         console.log("reconoci token <simbolo> con lexema: "+yytext);
-                        return 'mas';
+                        return '+';
                     }
 "-"                 {
                         console.log("reconoci token <simbolo> con lexema: "+yytext);
@@ -36,6 +36,7 @@ numero  [0-9]+
                     }
 /lex
 
+%left '+' '-'
 
 %start ini
 
@@ -46,8 +47,9 @@ ini
 ;
 
 E
-	: numero 'mas' numero
-
+	: E '-' E
+    | E '+' E
+    | numero
 ;
 
 
