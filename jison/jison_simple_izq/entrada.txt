@@ -1,5 +1,6 @@
-organizacion, de,
-lenguajes ,
-y
-, compiladores, 
-uno
+hola, mundo, 
+Organización, de, lenguajes
+, 
+
+y ,
+ compiladores

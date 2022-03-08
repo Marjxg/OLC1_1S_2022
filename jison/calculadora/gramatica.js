@@ -72,24 +72,24 @@
   }
 */
 var gramatica = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[5,6];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o};
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"ini":3,"bloque":4,"EOF":5,"coma":6,"PALABRA":7,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",6:"coma",7:"PALABRA"},
-productions_: [0,[3,2],[4,3],[4,1]],
+symbols_: {"error":2,"ini":3,"E":4,"EOF":5,"numero":6,"mas":7,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"numero",7:"mas"},
+productions_: [0,[3,2],[4,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
- console.log("termine de analizar, recursiva por la izq c:, usando el archivo sh");
+ console.log("termine de analizar");
 break;
 }
 },
-table: [{3:1,4:2,7:[1,3]},{1:[3]},{5:[1,4],6:[1,5]},o($V0,[2,3]),{1:[2,1]},{7:[1,6]},o($V0,[2,2])],
-defaultActions: {4:[2,1]},
+table: [{3:1,4:2,6:[1,3]},{1:[3]},{5:[1,4]},{7:[1,5]},{1:[2,1]},{6:[1,6]},{5:[2,2]}],
+defaultActions: {4:[2,1],6:[2,2]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -568,29 +568,33 @@ performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:
-                        console.log("reconoci token <coma> con lexema: "+yy_.yytext);
-                        return 6;
+                        return 6
                     
 break;
 case 1:
-break;
-case 2:
-break;
-case 3:
-                        console.log("reconoci token <palabra> con lexema: "+yy_.yytext)
+                        console.log("reconoci token <simbolo> con lexema: "+yy_.yytext);
                         return 7;
                     
 break;
-case 4:return 5; 
+case 2:
+                        console.log("reconoci token <simbolo> con lexema: "+yy_.yytext);
+                        return '-';
+                    
 break;
-case 5: 
+case 3:
+break;
+case 4:
+break;
+case 5:return 5; 
+break;
+case 6: 
                         console.error('Este es un error léxico: ' + yy_.yytext + ', en la linea: ' + yy_.yylloc.first_line + ', en la columna: ' + (yy_.yylloc.first_column+1)); 
                     
 break;
 }
 },
-rules: [/^(?:,)/,/^(?:[ \r\t]+)/,/^(?:\n)/,/^(?:[a-zA-ZñÑáéíóú]+)/,/^(?:$)/,/^(?:.)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5],"inclusive":true}}
+rules: [/^(?:([0-9]+))/,/^(?:\+)/,/^(?:-)/,/^(?:[ \r\t]+)/,/^(?:\n)/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6],"inclusive":true}}
 });
 return lexer;
 })();

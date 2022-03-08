@@ -6,6 +6,8 @@
 
 %%
 
+//simbolos o palabras reservadas
+
 ","                 {
                         console.log("reconoci token <coma> con lexema: "+yytext);
                         return 'coma';
