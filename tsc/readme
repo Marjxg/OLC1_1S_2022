@@ -1,0 +1,5 @@
+para instalar typescript
+`npm install -g typescript`
+para contruir se escribe el comando tsc
+`tsc index.ts`
+automaticamente se crea el archivo index.js
