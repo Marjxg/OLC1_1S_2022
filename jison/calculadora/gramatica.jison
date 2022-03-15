@@ -23,6 +23,14 @@ numero  [0-9]+
                         console.log("reconoci token <simbolo> con lexema: "+yytext);
                         return '-';
                     }
+"*"                 {
+                        console.log("reconoci token <simbolo> con lexema: "+yytext);
+                        return '*';
+                    }
+"/"                 {
+                        console.log("reconoci token <simbolo> con lexema: "+yytext);
+                        return '/';
+                    }
 
 [ \r\t]+            {}
 \n                  {}
@@ -37,19 +45,22 @@ numero  [0-9]+
 /lex
 
 %left '+' '-'
+%left '*' '/'
 
 %start ini
 
 %%
 
 ini
-	: E EOF { console.log("termine de analizar");}
+	: E EOF { console.log("termine de analizar,el resultado es ",$1);}
 ;
 
 E
-	: E '-' E
-    | E '+' E
-    | numero
+	: E '-' E  {$$=Number($1) - Number($3);}
+    | E '+' E  {$$=Number($1) + Number($3);}
+    | E '/' E  {$$=Number($1) / Number($3);}
+    | E '*' E  {$$=Number($1) * Number($3);}
+    | numero   {$$=$1;}
 ;
 
 

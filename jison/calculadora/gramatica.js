@@ -72,23 +72,38 @@
   }
 */
 var gramatica = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[5,6,7];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[1,7],$V2=[1,8],$V3=[5,6,7,8,9],$V4=[5,6,7];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"ini":3,"E":4,"EOF":5,"-":6,"+":7,"numero":8,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",6:"-",7:"+",8:"numero"},
-productions_: [0,[3,2],[4,3],[4,3],[4,1]],
+symbols_: {"error":2,"ini":3,"E":4,"EOF":5,"-":6,"+":7,"/":8,"*":9,"numero":10,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"-",7:"+",8:"/",9:"*",10:"numero"},
+productions_: [0,[3,2],[4,3],[4,3],[4,3],[4,3],[4,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
- console.log("termine de analizar");
+ console.log("termine de analizar,el resultado es ",$$[$0-1]);
+break;
+case 2:
+this.$=Number($$[$0-2]) - Number($$[$0]);
+break;
+case 3:
+this.$=Number($$[$0-2]) + Number($$[$0]);
+break;
+case 4:
+this.$=Number($$[$0-2]) / Number($$[$0]);
+break;
+case 5:
+this.$=Number($$[$0-2]) * Number($$[$0]);
+break;
+case 6:
+this.$=$$[$0];
 break;
 }
 },
-table: [{3:1,4:2,8:$V0},{1:[3]},{5:[1,4],6:[1,5],7:[1,6]},o($V1,[2,4]),{1:[2,1]},{4:7,8:$V0},{4:8,8:$V0},o($V1,[2,2]),o($V1,[2,3])],
+table: [{3:1,4:2,10:$V0},{1:[3]},{5:[1,4],6:[1,5],7:[1,6],8:$V1,9:$V2},o($V3,[2,6]),{1:[2,1]},{4:9,10:$V0},{4:10,10:$V0},{4:11,10:$V0},{4:12,10:$V0},o($V4,[2,2],{8:$V1,9:$V2}),o($V4,[2,3],{8:$V1,9:$V2}),o($V3,[2,4]),o([5,6,7,9],[2,5],{8:$V1})],
 defaultActions: {4:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
@@ -568,7 +583,7 @@ performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:
-                        return 8
+                        return 10
                     
 break;
 case 1:
@@ -582,19 +597,29 @@ case 2:
                     
 break;
 case 3:
+                        console.log("reconoci token <simbolo> con lexema: "+yy_.yytext);
+                        return 9;
+                    
 break;
 case 4:
+                        console.log("reconoci token <simbolo> con lexema: "+yy_.yytext);
+                        return 8;
+                    
 break;
-case 5:return 5; 
+case 5:
 break;
-case 6: 
+case 6:
+break;
+case 7:return 5; 
+break;
+case 8: 
                         console.error('Este es un error léxico: ' + yy_.yytext + ', en la linea: ' + yy_.yylloc.first_line + ', en la columna: ' + (yy_.yylloc.first_column+1)); 
                     
 break;
 }
 },
-rules: [/^(?:([0-9]+))/,/^(?:\+)/,/^(?:-)/,/^(?:[ \r\t]+)/,/^(?:\n)/,/^(?:$)/,/^(?:.)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6],"inclusive":true}}
+rules: [/^(?:([0-9]+))/,/^(?:\+)/,/^(?:-)/,/^(?:\*)/,/^(?:\/)/,/^(?:[ \r\t]+)/,/^(?:\n)/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8],"inclusive":true}}
 });
 return lexer;
 })();
