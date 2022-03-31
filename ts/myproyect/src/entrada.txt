@@ -1,0 +1,3 @@
+var gola :number =;
+var dia :number =;
+var variable :number =;

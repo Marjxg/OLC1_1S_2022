@@ -1,0 +1,14 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":" ts-node ./src/index.ts",
+    "jison": "jison ./src/grammar/grammar.jison && mv grammar.js ./src/grammar"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

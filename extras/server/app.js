@@ -19,7 +19,7 @@ app.listen(puerto , function () {
 
 app.get('/', function (req, res) {
     incremental++;
-    res.json({mensaje: "hola mundo"})
+    res.json({mensaje: "hola mundo"}).status(200)
 })
 
 app.get('/getIncremental', function (req, res) {
