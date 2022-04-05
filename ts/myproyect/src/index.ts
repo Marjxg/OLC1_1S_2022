@@ -1,3 +1,4 @@
+import { Declaracion } from "./instruccion/declaracion";
 import { Environment } from "./symbol/enviroment";
 const parser = require("./grammar/grammar");
 const fs = require("fs");

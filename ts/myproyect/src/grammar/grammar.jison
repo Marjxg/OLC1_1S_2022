@@ -1,10 +1,16 @@
  
 %{
     const {Declaracion} = require('../instruccion/declaracion');
+    const {Type} = require('../symbol/type');
+    const {Arithmetic} = require('../expression/aritmeticas');
+    const {ArithmeticOption} = require('../expression/aritmeticOption');
+    const {Literal} = require('../expression/literal');
 %}
 
 %lex
 %options case-insensitive
+
+number  [0-9]+              
 
 %%
 
@@ -16,10 +22,14 @@
 [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/] // comentario multiple líneas
 
 
+
+{number}               return 'expreNUMBER'
+
 "var"                  return 'var'
-"number"               return 'number'
+"number"               return 'tnumber'
 
-
+"+"                    return '+'
+"-"                    return '-'
 ";"                    return ';'
 ":"                    return ':'
 "="                    return '='
@@ -33,6 +43,9 @@
     }
 
 /lex
+
+
+%left '+' '-'
 
 %start Init
 
@@ -52,5 +65,17 @@ Instruction
 ;
 
 DECLARACION
-    : 'var' 'id' ':' 'number' '=' ';'{ $$= new Declaracion($2,$4, @1.first_line, @1.first_column)}
+    : 'var' 'id' ':' 'tnumber' '='  EXPRE  ';' { $$= new Declaracion($2,$4,$6, @1.first_line, @1.first_column)}
+;
+
+EXPRE
+    : EXPRE '+' EXPRE        {$$=new Arithmetic($1, $3,ArithmeticOption.MAS ,  @1.first_line, @1.first_column);}
+    | EXPRE '-' EXPRE        {$$=new Arithmetic($1, $3,ArithmeticOption.MENOS ,  @1.first_line, @1.first_column);}
+    | F                      {$$= $1;}
+;
+
+
+F
+    : 
+    expreNUMBER {$$= new Literal($1,Type.NUMBER, @1.first_line, @1.first_column);}
 ;
