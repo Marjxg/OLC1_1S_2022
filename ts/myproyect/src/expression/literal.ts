@@ -18,18 +18,15 @@ export class Literal extends Expression {
         
         if (this.type == Type.NUMBER)
             return { value: Number(this.value), type: Type.NUMBER }
-        else if (this.type == Type.STRING)
+        else if (this.type == Type.STRING){
+            this.value = (this.value).replaceAll("\"","")
             return { value: this.value, type: Type.STRING }
-        else if (this.type == Type.BOOLEAN) {
-            if (this.value == "true") {
-                return { value: Boolean(true), type: Type.BOOLEAN }
-            }
-            else {
-                return { value: Boolean(false), type: Type.BOOLEAN }
-            }
         }
-        else
-            return { value: this.value, type: Type.error }
+        else if (this.type == Type.BOOLEAN) {
+            if (this.value == "true") return { value: Boolean(true), type: Type.BOOLEAN }
+            else return { value: Boolean(false), type: Type.BOOLEAN }
+        }
+        else return { value: this.value, type: Type.error }
 
     }
 }

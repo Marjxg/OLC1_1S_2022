@@ -15,24 +15,18 @@ export class Declaracion extends Instruccion {
   }
 
   public execute(env: Environment) {
-    //preguntar si la variable es unica y si los tipos con correctos, antes de ingresar a la tabla de simbolo
-    env.guardar_variable(this.nombre, 1, this.tipo);
-    console.log("acabo de guardar una variable en la tabla de simbolos");
     
-    let olc= this.expresion.execute(env)
+    let exp= this.expresion.execute(env)
     
-    console.log(olc)
-
-    //esta condicion tiene que ir de primero, solo la coloque en este lado para que vieran como valido
-    if (olc.type== Type.NUMBER){
-      //condiciones correctas
-      console.log("son correctas");
+    if (exp.type == this.tipo){
+      const condicion = env.guardar_variable(this.nombre, exp.value, this.tipo);
+      if (condicion){
+        console.log("variable ["+this.nombre+"] ingresada...");
+      }else{
+        console.log("variable ["+this.nombre+"] no ingresada...");
+      }
     }else{
-      //estas trando de asignar una cadena a un
-      console.log("errro semantico");
-      
+      console.log("error semantico, declaracion de variable ["+this.nombre+"] no correcta");
     }
-    
-    //console.log(env);
   }
 }

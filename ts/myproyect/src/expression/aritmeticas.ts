@@ -25,9 +25,6 @@ export class Arithmetic extends Expression {
         const nodoIzq = this.left.execute(env)
         const nodoDer = this.right.execute(env)
 
-        /**
-         * suma
-         */
         if (this.type == ArithmeticOption.MAS) {
 
    
@@ -36,9 +33,41 @@ export class Arithmetic extends Expression {
                     value: (nodoIzq.value + nodoDer.value), 
                     type: Type.NUMBER 
                 }
+            }else if (nodoDer.type == Type.NUMBER && nodoIzq.type == Type.STRING
+                ||nodoDer.type == Type.STRING && nodoIzq.type == Type.NUMBER) {
+                result = { 
+                    value: (String(nodoIzq.value) + String(nodoDer.value)), 
+                    type: Type.STRING 
+                }
+            }else if (nodoIzq.type == Type.STRING || nodoDer.type == Type.STRING ) {
+                result = { 
+                    value: (String(nodoIzq.value) + String(nodoDer.value)), 
+                    type: Type.STRING 
+                }
+            }else if (nodoIzq.type == Type.BOOLEAN && nodoDer.type == Type.NUMBER ) {
+                const val:number= nodoIzq.value? 1:0
+                result = { 
+                    value: ( val+nodoDer.value), 
+                    type: Type.NUMBER 
+                }
+            }
+            else if (nodoDer.type == Type.BOOLEAN && nodoIzq.type == Type.NUMBER ) {
+                const val:number= nodoDer.value? 1:0
+                result = { 
+                    value: ( val+nodoIzq.value), 
+                    type: Type.NUMBER 
+                }
+            }
+            else if (nodoIzq.type == Type.BOOLEAN || nodoDer.type == Type.BOOLEAN ) {
+                const val1:number= nodoIzq.value? 1:0
+                const val2:number= nodoDer.value? 1:0
+                result = { 
+                    value: ( val1+val2), 
+                    type: Type.NUMBER 
+                }
             }
             
-            //demas validadionces
+            //demas validadionces para la operaciones aritmeticas
             
         }else if (this.type == ArithmeticOption.MENOS) {
 
@@ -49,8 +78,7 @@ export class Arithmetic extends Expression {
                     type: Type.NUMBER 
                 }
             }
-            
-            //demas validadionces
+            //en la resta unicamente quiero con numeros
             
         }
 

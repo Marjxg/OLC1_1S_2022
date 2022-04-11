@@ -1,1 +1,16 @@
-var gola :number = 1+10+5;
+var primeera :number = 1+10+5;
+var segundo:number= 12;
+var tercera: string = 2+5+"gola"
+var cuarta: string = 2+5+"gola";
+var quinta: string = 2+5+"gola";
+var nombre:string ="compi"+"1";
+var condicion:bool =true;
+var condicion2:number =true+5+false+true+2;
+printenv();
+condicion2=2022
+condicion= false;
+nombre="primersemestre";
+printenv();
+print(1-10);
+print(true+false);
+print("compi "+ 1)
