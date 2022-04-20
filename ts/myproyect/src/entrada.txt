@@ -6,11 +6,29 @@ var quinta: string = 2+5+"gola";
 var nombre:string ="compi"+"1";
 var condicion:bool =true;
 var condicion2:number =true+5+false+true+2;
-printenv();
 condicion2=2022
 condicion= false;
 nombre="primersemestre";
-printenv();
 print(1-10);
 print(true+false);
 print("compi "+ 1)
+print("a continuacion la sentencia if:");
+print(50+5>100)
+
+
+if(10>1){
+    print("es correcto")
+    var nombre: string="estoy en otro env";
+    var pregunta: bool= 10+10>100;
+    printEnv();
+
+}else{
+    print(10+1)
+    var nombre2:string="olc1";
+    PrintEnv()
+}
+print("------------------------------------")
+
+for(var x:number=0; 1<15; ){
+    print("->")
+}
